@@ -27,9 +27,6 @@ class SimpleTaxiEnv():
         self.passenger_loc = None
        
         self.obstacles = set()  # No obstacles in simple version
-        for i in range(grid_size - 2):
-            self.obstacles.add((1, i))
-            self.obstacles.add((3, 4 - i))
         self.destination = None
 
     def reset(self):
@@ -46,8 +43,14 @@ class SimpleTaxiEnv():
         self.taxi_pos = random.choice(available_positions)
         
         self.passenger_loc = random.choice([pos for pos in self.stations])
-        
-        
+        obstacle = []
+        for i in range(self.grid_size):
+            for j in range(1, 4):
+                obstacle.append((j, i))
+        indexes = np.random.choice(len(obstacle), 4)
+        for i in indexes:
+            self.obstacles.add(obstacle[i])
+
         possible_destinations = [s for s in self.stations if s != self.passenger_loc]
         self.destination = random.choice(possible_destinations)
         
