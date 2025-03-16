@@ -17,7 +17,7 @@ def get_action(obs):
     state = get_state(obs)
     return np.random.choice([0, 1, 2, 3, 4, 5], p=softmax(np.array(policy_table[state])))
 
-def run_train(episodes=10000, max_steps=10000, gamma=0.99, alpha=0.1):
+def run_train(episodes=10000, gamma=0.99, alpha=0.1):
     env_config = {
         "fuel_limit": 5000
     }
@@ -34,7 +34,7 @@ def run_train(episodes=10000, max_steps=10000, gamma=0.99, alpha=0.1):
         step_count = 0
         trajectory = []
 
-        while not done and step_count < max_steps:
+        while not done:
             
             state = get_state(obs)
             action = get_action(obs)

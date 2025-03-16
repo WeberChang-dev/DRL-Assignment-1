@@ -27,6 +27,9 @@ class SimpleTaxiEnv():
         self.passenger_loc = None
        
         self.obstacles = set()  # No obstacles in simple version
+        for i in range(grid_size - 2):
+            self.obstacles.add((1, i))
+            self.obstacles.add((3, 4 - i))
         self.destination = None
 
     def reset(self):
