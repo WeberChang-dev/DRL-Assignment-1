@@ -4,7 +4,7 @@ import pickle
 import random
 # import gym
 
-with open('policy_table.pkl', 'rb') as f:
+with open('policy_method_table.pkl', 'rb') as f:
     policy_table = pickle.load(f)
 
 def softmax(x):
