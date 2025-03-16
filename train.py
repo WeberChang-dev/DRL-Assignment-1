@@ -2,7 +2,7 @@ import numpy as np
 import pickle
 from simple_custom_taxi_env import SimpleTaxiEnv
 
-with open('policy_table.pkl', 'rb') as f:
+with open('policy_method_table.pkl', 'rb') as f:
     policy_table = pickle.load(f)
 
 def softmax(x):
@@ -62,7 +62,10 @@ def run_train(episodes=5000, max_steps=10000, gamma=0.99, alpha=0.1):
             print(f"Episode {i} Failed! Reward: {total_reward}")
         sum += total_reward
         
-    
+    for key, value in policy_table.items():
+        new_val = [float(x) for x in value]
+        policy_table[key] = new_val
+
     with open('policy_method_table.pkl', 'wb') as f:
         pickle.dump(policy_table, f, protocol=pickle.HIGHEST_PROTOCOL)
     print(f"Average reward: {sum / episodes}")
