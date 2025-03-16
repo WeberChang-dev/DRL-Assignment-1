@@ -2,4 +2,3 @@ tqdm
 requests
 argparse
 torch
-numpy==2.2.3

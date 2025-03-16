@@ -2,7 +2,7 @@
 import numpy as np
 import pickle
 import random
-import gym
+# import gym
 
 with open('policy_table.pkl', 'rb') as f:
     policy_table = pickle.load(f)
@@ -21,5 +21,5 @@ def get_action(obs):
     taxi_row, taxi_col, _,_,_,_,_,_,_,_,obstacle_north, obstacle_south, obstacle_east, obstacle_west, passenger_look,destination_look = obs
     state = (obstacle_south, obstacle_north, obstacle_east, obstacle_west, passenger_look, destination_look)
 
-    return np.random.choice([0, 1, 2, 3, 4, 5], p=softmax(policy_table[state])) # Choose a random action
+    return np.random.choice([0, 1, 2, 3, 4, 5], p=softmax(np.array(policy_table[state]))) # Choose a random action
     # You can submit this random agent to evaluate the performance of a purely random strategy.
